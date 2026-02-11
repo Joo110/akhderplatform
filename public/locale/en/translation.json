@@ -1,0 +1,191 @@
+{
+"LanguageSwitch":{
+    "Language":"Language",
+    "English":"English",
+    "Arabic":"Arabic"
+},
+"Navbar":{
+    "Home":"Home",
+    "Services":"Services",
+    "About_us":" About us",
+    "Contact_us":"Contact us",
+    "Who_We_are":"Who We are",
+    "Log_in":"Log in",
+    "Articles": "Articles",
+    "Sign_in":"Sign in"
+},
+"Home":{
+    "Web&AppServices":"Web & App Services",
+    "One_Unified_Platform":"One Unified Platform.",
+    "Websites":"Websites. Applications. Databases. Smart, scalable solutions",
+    "built_business":" built to power your business.",
+    "Contact_Us":"Contact Us"
+
+},
+
+  "Articles": {
+    "AddNew": "Add New Article",
+    "Title": "Title",
+    "TitlePlaceholder": "Enter article title",
+    "Excerpt": "Excerpt (Optional)",
+    "ExcerptPlaceholder": "Short summary shown in lists",
+    "Content": "Content",
+    "ContentPlaceholder": "Full article text",
+    "Language": "Language",
+    "AddButton": "Add Article",
+    "Saving": "Saving...",
+    "AddedSuccessfully": "Article added successfully",
+    "AddError": "Failed to add article",
+    "ListTitle": "Articles",
+    "NoArticles": "No articles yet",
+    "ReadMore": "Read More",
+    "Loading": "Loading..."
+  },
+
+"sliders":{
+    "title1":"Websites",
+    "desc1":"We create responsive websites that reflect your brand and offer a smooth user experience.",
+    "title2": "Mobile Applications",
+    "desc2": "Custom mobile apps with smart design and smooth performance.",
+    "title3":"Databases",
+    "desc3":"We create advertising campaigns that attract attention and achieve impact.",
+    "title4":"Digital Marketing",
+    "desc4": "Reach the right audience with smart, effective, and targeted strategies.",
+    "title5": "Advertising",
+    "desc5": "Impactful campaigns that grab attention, build connection, and drive results.",
+    "title6":"Motion Graphics",
+    "desc6": "Bring your story to life with bold, dynamic visuals that inspire, stay unforgettable.",
+    "title7": "Graphic Design",
+    "desc7": "Visual identity that makes your brand stand out and stay memorable."
+},
+"AboutUs":{
+    "About_us":"About us",
+    "Akhdar_delivers":"Akhdar delivers smart digital solutions to help businesses grow and succeed.",
+    "We_specialize":"We specialize in programming mobile apps, websites, and databases that ensure smooth and reliable performance.",
+    "We_offer":" We offer marketing, advertising, and design services that boost visibility, connect with your audience, and reflect your brand’s identity."
+},
+"ContactUs":{
+    "First_Name":"First Name",
+    "Last-Name":"Last Name",
+    "Email":"Email",
+    "Enter-your-email":"Enter your email",
+    "Phone-number":"Phone number",
+    "Enter-your-Phone":"Enter your Phone",
+    "Subject":"Subject",
+    "Enter-your-subject":"Enter your subject",
+    "Message":"Message",
+    "Enter-your-message":"Enter your message",
+    "firstName-required":"firstName is required",
+    "lastName-required":"lastName is required",
+    "Email-required":"Email is required",
+    "Phone-required":"Phone number is required",
+    "Subject-required":"Subject is required",
+    "message-required":"message is required",
+    "Loading...":"Loading...",
+    "Submit":"Submit",
+    "Address":"Address",
+    "Contact":"Contact",
+    "Open-time":"Open time",
+    "Saturday_Thursday":"Saturday_Thursday:10ِAM -5PM",
+    "Stay-connected":"Stay connected"
+    
+},
+"Footer":{
+    "Web&AppServices":"Web & App Services",
+    "One-Unified-Platform":"One Unified Platform.",
+    "Quick-Links":"Quick Links",
+    "Home":"Home",
+    "Services":"Services",
+    "Contact-us":"Contact us",
+    "About-us":"About us",
+    "websites":"websites",
+    "Mobile-application":"Mobile application",
+    "Database":"Database",
+    "Copyright":" Copyright © 2025 Moon| All Rights Reserved | Terms and Conditions |Privacy Policy"
+},
+
+"ServiceDetails": {
+    "header": {
+      "title": "Website Design and Development",
+      "desc": "We design modern, responsive websites that reflect your business identity and showcase your services in the best possible way. Whether you're looking for a profile website, an online store, or a custom control panel, we're here to create the perfect solution."
+    },
+    "projectsHeader": {
+      "title": "Mandob Website",
+      "desc": "A plug-in system that connects the driver to the average user. The user can search for a driver to plug their orders anywhere, choose the best driver, truck, and price, and then place an order. The driver can accept or refuse the delivery."
+    },
+    "projects": {
+      "title1": "Tawjihi Gate Website",
+      "desc1": "An educational portal offering a range of courses across global learning centres. Each centre has unique features, enabling us to meet students' diverse needs. Teachers can manage classes, upload educational units and videos. Each student receives a personal link after registering and paying fees.",
+      "title2": "iKhair Website",
+      "desc2": "iKhair is the first Arabic donation platform and app, allowing donations via SMS, bank account, or credit card. It supports mobile donation, zakat, and has collected over 13 million dirhams for more than 150 charitable organizations.",
+      "title3": "Raslan Children Company Website",
+      "desc3": "This website serves the architecture field, with a team of engineers and technicians working on Hashemite and Pharaonic stones, as well as interior and exterior decorations. It is a content management system built with Laravel.",
+      "title4": "Raslan Children Company Website",
+      "desc4": "This website serves the architecture field, with a team of engineers and technicians working on Hashemite and Pharaonic stones, as well as interior and exterior decorations. It is a content management system built with Laravel.",
+      "title5": "Raslan Children Company Website",
+      "desc5": "This website serves the architecture field, with a team of engineers and technicians working on Hashemite and Pharaonic stones, as well as interior and exterior decorations. It is a content management system built with Laravel."
+    },
+    "stats": {
+      "Experiences": "Experiences",
+      "Project-done": "Project done",
+      "Happy-Clients": "Happy Clients"
+    },
+    "Stay-connected": "Stay connected"
+  
+},
+"ServiceDetails2":{
+  "header":{
+    "title": "Mobile design and development",
+    "desc": "We develop modern, easy-to-use applications that reflect your business's identity and meet your needs.Whether it's a service application, an online store, or a custom management system, we create a unique and integrated experience for you." 
+  },
+   "projectsHeader": {
+        "title": "Creative & Tech-Driven Mobile Apps",
+        "desc": "We craft mobile apps that blend sleek design with powerful functionality to bring your vision to life."
+      },
+      "projects":{
+          "title1": "IKhair Application",
+          "desc1": "Mobile Donation App, pay zakat, and donate from your mobile via SMS , Credit card and Bank a ccount .more than 13 million dur ham for more than 150 chari table  projects an dur gent cases.",
+          "title2": "Seyana - UAEA pplication",
+          "desc2":"Seyanah-UAE app is an amazing and flexible app forhome services Facilitate the user to request more than on order with categories (Plumber,Laundry, Packers Movers, Washing Machine, Painting, Cleaning, CarWash ,PestsControlandmore .",
+          "title3": "Mega JO Application",
+          "desc3": "it is consider edane-commerce mobile application where you can make online shopping with online payment methods . it has multi- vendor  feature . Anyvendor scanview their products.",
+          "title4": "Raslan Children Company Website",
+          "desc4": "This website serve the architecture field , where there is a group of specialized engineers and technicians to install and work all kinds of Hashemite stones and pharaonic stones and all kinds of in teri or an dexter ior decorations and finish villas and palaces. It is a Content Management System using Laravel."
+          
+      }
+},
+"Who-We-are":{
+    "Who-we-are":"Who we are?",
+    "description":"We are a Saudi programming company that creates digital solutions intelligently and professionally. We design and develop systems, websites, and applications that meet your business needs and keep pace with market expectations. We work on the details and build technology with confidence, to be a true partner for success.",
+    "Stay-connected":"Stay connected",
+    "Experiences":"Experiences",
+    "20+":"20+",
+    "Project-done":"Project done",
+    "80+":"80+",
+    "Happy-Clients":"Happy Clients",
+     "Our-Founders":"Our Founders",
+     "Proudly-led":" Proudly led by visionaries with deep expertise in technology and programming.",
+     
+     "name2": "WAEL FOTOUH",
+      "position2": "GENERAL MANAGER",
+      "description2":"Experienced tech leader with strong development, networking, and management skills",
+       "name3": "Hossam Abdel-rahman",
+      "position3": "Front-end Developer",
+      "description3":"Experienced in building responsive Angular apps with clean code. Passionate about learning and teamwork.",
+      "name4": "Adel Farouk",
+      "position4": "Account Manager",
+      "description4":"The Account Manager oversees client relations, ensures project quality",
+      
+      "name7": "Samar Zeinah",
+      "position7": "Front-end Developer",
+      "description7":"Passionate about building responsive interfaces with clean code. Solid understanding of modern web tech and always eager to learn and collaborate.",
+       "name8": "Rawan Mohamed",
+      "position8": "Ui/Ux designer",
+      "description8":"UI is the visual part of an app buttons, forms designed to offer simple, intuitive user experience.",
+     "name9": "Mohamed Salah",
+      "position9": "Back-end Developer",
+      "description9":"Experienced Back-end developer specialized in PHP and Laravel, dedicated to crafting robust, secure, and high-performance APIs"
+    
+}
+
+}

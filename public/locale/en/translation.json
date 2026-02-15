@@ -10,8 +10,9 @@
     "About_us":" About us",
     "Contact_us":"Contact us",
     "Who_We_are":"Who We are",
-    "Log_in":"Log in",
+    "Login":"Log in",
     "Articles": "Articles",
+    "Logout": "Logout",
     "Sign_in":"Sign in"
 },
 "Home":{
@@ -23,25 +24,39 @@
 
 },
 
+
   "Articles": {
     "AddNew": "Add New Article",
-    "Title": "Title",
-    "TitlePlaceholder": "Enter article title",
-    "Excerpt": "Excerpt (Optional)",
-    "ExcerptPlaceholder": "Short summary shown in lists",
-    "Content": "Content",
-    "ContentPlaceholder": "Full article text",
-    "Language": "Language",
-    "AddButton": "Add Article",
-    "Saving": "Saving...",
-    "AddedSuccessfully": "Article added successfully",
-    "AddError": "Failed to add article",
+    "Edit": "Edit Article",
+    "ArticlesDescription": "Description",
     "ListTitle": "Articles",
-    "NoArticles": "No articles yet",
+    "Title": "Title",
+    "TitlePlaceholder": "Enter article title...",
+    "Description": "Description",
+    "LoginToAdd": "Login To Add",
+    "DescriptionPlaceholder": "Enter article description...",
+    "Hyperlink": "Link",
+    "AltText": "Alt Text",
+    "AltTextPlaceholder": "Image description...",
+    "Picture": "Picture",
+    "AddButton": "Add Article",
+    "UpdateButton": "Update Article",
+    "Cancel": "Cancel",
+    "Saving": "Saving...",
+    "Updating": "Updating...",
+    "Loading": "Loading...",
     "ReadMore": "Read More",
-    "Loading": "Loading..."
+    "NoArticles": "No articles available",
+    "AddFirst": "Add your first article",
+    "AddedSuccessfully": "Article added successfully",
+    "UpdatedSuccessfully": "Article updated successfully",
+    "AddError": "Error adding article",
+    "UpdateError": "Error updating article",
+    "LoadError": "Error loading article"
   },
 
+
+  
 "sliders":{
     "title1":"Websites",
     "desc1":"We create responsive websites that reflect your brand and offer a smooth user experience.",

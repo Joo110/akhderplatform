@@ -1,12 +1,20 @@
-import { Outlet } from "react-router-dom";
+// src/MyComponents/Layout.tsx
+import { Outlet, useLocation } from "react-router-dom";
 import { MessageCircle, Phone } from "lucide-react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
 const Layout = () => {
+  const location = useLocation();
+
+  // قائمة المسارات التي لا نريد إظهار الـ Navbar فيها
+  const hideNavbarOn = ["/login"];
+  const shouldHideNavbar = hideNavbarOn.includes(location.pathname);
+
   return (
     <>
-      <Navbar />
+      {/* Navbar يظهر فقط لو مش في صفحة login */}
+      {!shouldHideNavbar && <Navbar />}
 
       <main className="relative overflow-x-hidden">
         <Outlet />

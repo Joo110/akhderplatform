@@ -11,7 +11,8 @@
   "About_us": "من نحن",
   "Contact_us": "اتصل بنا",
   "Who_We_are": "من نكون",
-  "Log_in": "تسجيل الدخول",
+  "Logout": "تسجيل الخروج",
+  "Login": "تسجيل الدخول",
   "Sign_in": "إنشاء حساب"
 },
 "Home": {
@@ -22,24 +23,36 @@
   "Contact_Us": "تواصل معنا"
 },
 
+
   "Articles": {
-    "AddNew": "أضف مقال جديد",
-    "Title": "العنوان",
-    "TitlePlaceholder": "اكتب عنوان المقال",
-    "Excerpt": "ملخص (اختياري)",
-    "ExcerptPlaceholder": "ملخص قصير يظهر في القوائم",
-    "Content": "المحتوى",
-    "ContentPlaceholder": "نص المقال الكامل",
-    "Language": "اللغة",
-    "AddButton": "أضف المقال",
-    "Saving": "جارٍ الحفظ...",
-    "AddedSuccessfully": "تم إضافة المقال بنجاح",
-    "AddError": "فشل في إضافة المقال",
+    "AddNew": "إضافة مقال جديد",
+    "Edit": "تعديل المقال",
     "ListTitle": "المقالات",
-    "NoArticles": "لا توجد مقالات بعد",
+    "Title": "العنوان",
+    "TitlePlaceholder": "أدخل عنوان المقال...",
+    "Description": "الوصف",
+    "DescriptionPlaceholder": "أدخل وصف المقال...",
+    "Hyperlink": "الرابط",
+    "AltText": "النص البديل",
+    "LoginToAdd": "يجب ان تسجل دخولك",
+    "AltTextPlaceholder": "وصف الصورة...",
+    "Picture": "الصورة",
+    "AddButton": "إضافة المقال",
+    "UpdateButton": "تحديث المقال",
+    "Cancel": "إلغاء",
+    "Saving": "جاري الحفظ...",
+    "Updating": "جاري التحديث...",
+    "Loading": "جاري التحميل...",
     "ReadMore": "اقرأ المزيد",
-    "Loading": "جاري التحميل..."
+    "NoArticles": "لا توجد مقالات",
+    "AddFirst": "أضف أول مقال",
+    "AddedSuccessfully": "تم إضافة المقال بنجاح",
+    "UpdatedSuccessfully": "تم تحديث المقال بنجاح",
+    "AddError": "حدث خطأ أثناء إضافة المقال",
+    "UpdateError": "حدث خطأ أثناء تحديث المقال",
+    "LoadError": "حدث خطأ أثناء تحميل المقال"
   },
+
 
 "sliders": {
   "title1": "مواقع إلكترونية",

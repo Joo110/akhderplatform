@@ -1,36 +1,36 @@
 // src/components/ArticleDetails.tsx
 import React, { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../firebase";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { getArticle } from "../../src/services/articlesService";
+import type { Article } from "../types/article";
 
 const ArticleDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const [article, setArticle] = useState<any>(null);
+  const [article, setArticle] = useState<Article | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (!id) return;
     
-    const fetchDoc = async () => {
+    const fetchArticle = async () => {
       try {
-        const d = await getDoc(doc(db, "articles", id));
-        if (d.exists()) {
-          setArticle({ id: d.id, ...d.data() });
-        }
+        setLoading(true);
+        setError(false);
+        const data = await getArticle(id);
+        setArticle(data);
       } catch (error) {
         console.error("Error fetching article:", error);
+        setError(true);
       } finally {
         setLoading(false);
       }
     };
     
-    fetchDoc();
+    fetchArticle();
   }, [id]);
 
   const isRTL = i18n.language === "ar";
@@ -49,7 +49,7 @@ const ArticleDetails: React.FC = () => {
     );
   }
 
-  if (!article) {
+  if (error || !article) {
     return (
       <div className="min-h-screen flex items-center justify-center px-4">
         <div className="text-center max-w-md">
@@ -75,16 +75,6 @@ const ArticleDetails: React.FC = () => {
     );
   }
 
-  const formatDate = (timestamp: any) => {
-    if (!timestamp) return "";
-    const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
-    return new Intl.DateTimeFormat(isRTL ? "ar-EG" : "en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric"
-    }).format(date);
-  };
-
   return (
     <article className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-6 sm:py-8 md:py-12">
       <div className="max-w-4xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
@@ -109,56 +99,84 @@ const ArticleDetails: React.FC = () => {
           {/* Header Accent */}
           <div className="h-1.5 sm:h-2 bg-gradient-to-r from-[#006F3C] to-[#FFC107]"></div>
 
-          <div className="p-4 sm:p-6 md:p-8 lg:p-12">
-            {/* Language Badge */}
-            {article.lang && (
-              <div className="mb-3 sm:mb-4">
-                <span className="inline-block px-3 sm:px-4 py-1 bg-gray-100 text-gray-700 text-xs sm:text-sm font-semibold rounded-full">
-                  {article.lang === "ar" ? "العربية 🇪🇬" : "English 🇬🇧"}
-                </span>
-              </div>
-            )}
-
-            {/* Title */}
-            <h1 
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6 leading-tight"
-              dir={isRTL ? "rtl" : "ltr"}
-            >
-              {article.title}
-            </h1>
-
-            {/* Meta Info */}
-            <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-7 md:mb-8 pb-6 sm:pb-7 md:pb-8 border-b-2 border-gray-100">
-              <div className="flex items-center gap-1.5 sm:gap-2 text-gray-500">
-                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                <span className="text-xs sm:text-sm font-medium">
-                  {formatDate(article.createdAt)}
-                </span>
-              </div>
-            </div>
-
-            {/* Excerpt */}
-            {article.excerpt && (
-              <div className="mb-6 sm:mb-7 md:mb-8 p-4 sm:p-5 md:p-6 bg-gradient-to-r from-[#006F3C]/5 to-[#FFC107]/5 rounded-lg sm:rounded-xl border-l-4 border-[#006F3C]">
-                <p 
-                  className="text-base sm:text-lg text-gray-700 italic leading-relaxed"
+          {/* Article Image */}
+          {article.pictureUrl && (
+            <div className="relative h-64 sm:h-80 md:h-96 overflow-hidden">
+              <img
+                src={article.pictureUrl}
+                alt={article.altText || article.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+              
+              {/* Title Overlay on Image */}
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
+                <h1 
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 leading-tight drop-shadow-lg"
                   dir={isRTL ? "rtl" : "ltr"}
                 >
-                  {article.excerpt}
-                </p>
+                  {article.title}
+                </h1>
               </div>
+            </div>
+          )}
+
+          <div className="p-4 sm:p-6 md:p-8 lg:p-12">
+            {/* Title (if no image) */}
+            {!article.pictureUrl && (
+              <h1 
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6 leading-tight"
+                dir={isRTL ? "rtl" : "ltr"}
+              >
+                {article.title}
+              </h1>
             )}
 
-            {/* Content */}
+            {/* Description */}
             <div 
-              className="prose prose-sm sm:prose-base md:prose-lg max-w-none"
+              className="prose prose-sm sm:prose-base md:prose-lg max-w-none mb-6 sm:mb-8"
               dir={isRTL ? "rtl" : "ltr"}
             >
               <p className="text-gray-800 leading-relaxed whitespace-pre-wrap text-sm sm:text-base md:text-lg">
-                {article.content}
+                {article.description}
               </p>
+            </div>
+
+            {/* External Link */}
+            {article.hyperlink && (
+              <div className="mt-6 sm:mt-8 p-4 sm:p-5 md:p-6 bg-gradient-to-r from-[#006F3C]/5 to-[#FFC107]/5 rounded-lg sm:rounded-xl border-l-4 border-[#006F3C]">
+                <div className="flex items-start sm:items-center gap-3 flex-col sm:flex-row">
+                  <div className="flex items-center gap-2">
+                    <svg className="w-5 h-5 text-[#006F3C] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                    </svg>
+                    <span className="text-sm sm:text-base font-semibold text-gray-700">
+                      {isRTL ? "رابط خارجي:" : "External Link:"}
+                    </span>
+                  </div>
+                  <a
+                    href={article.hyperlink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm sm:text-base text-[#006F3C] hover:text-[#005A31] font-medium hover:underline break-all"
+                  >
+                    {article.hyperlink}
+                  </a>
+                </div>
+              </div>
+            )}
+
+            {/* Action Buttons */}
+            <div className="mt-6 sm:mt-8 flex flex-wrap items-center gap-3">
+              <Link
+                to={`/articles/edit/${article.id}`}
+                className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg sm:rounded-xl font-semibold text-sm sm:text-base transition-all shadow-md hover:shadow-lg"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+                {isRTL ? "تعديل المقال" : "Edit Article"}
+              </Link>
             </div>
           </div>
         </div>
@@ -169,16 +187,43 @@ const ArticleDetails: React.FC = () => {
             {isRTL ? "شارك هذا المقال" : "Share this article"}
           </p>
           <div className="flex justify-center gap-3 sm:gap-4">
-            <button className="p-2.5 sm:p-3 bg-gray-100 hover:bg-gray-200 rounded-full transition-all">
-              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" fill="currentColor" viewBox="0 0 24 24">
+            <button 
+              onClick={() => {
+                const url = window.location.href;
+                navigator.clipboard.writeText(url);
+                alert(isRTL ? "تم نسخ الرابط" : "Link copied!");
+              }}
+              className="p-2.5 sm:p-3 bg-gray-100 hover:bg-gray-200 rounded-full transition-all group"
+              title={isRTL ? "نسخ الرابط" : "Copy link"}
+            >
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700 group-hover:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+            </button>
+            
+            <a
+              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 sm:p-3 bg-gray-100 hover:bg-gray-200 rounded-full transition-all group"
+              title="Facebook"
+            >
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700 group-hover:text-blue-600" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
               </svg>
-            </button>
-            <button className="p-2.5 sm:p-3 bg-gray-100 hover:bg-gray-200 rounded-full transition-all">
-              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" fill="currentColor" viewBox="0 0 24 24">
+            </a>
+            
+            <a
+              href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(article.title)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 sm:p-3 bg-gray-100 hover:bg-gray-200 rounded-full transition-all group"
+              title="Twitter"
+            >
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700 group-hover:text-blue-400" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
               </svg>
-            </button>
+            </a>
           </div>
         </div>
       </div>

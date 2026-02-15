@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import Logo from "../assets/logo.png";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useTranslation } from "react-i18next";
+import { useAuthContext } from "../context/AuthProvider";
 
 interface NavItem {
   to: string;
@@ -16,6 +17,7 @@ const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [scrolled, setScrolled] = useState<boolean>(false);
   const { t } = useTranslation();
+  const { isAuthenticated, logout } = useAuthContext();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -87,22 +89,40 @@ const Navbar: React.FC = () => {
 
           {/* Articles Link - Desktop */}
           <li>
-           <Link
-  to="/articles"
-  className="text-lg lg:text-xl hover:text-[#FFC107] relative
+            <Link
+              to="/articles"
+              className="text-lg lg:text-xl hover:text-[#FFC107] relative
              after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[2px]
              after:bg-[#FFC107] after:transition-all after:duration-500
              hover:after:w-full"
->
-  {t("Navbar.Articles")}
-</Link>
-
+            >
+              {t("Navbar.Articles")}
+            </Link>
           </li>
         </ul>
 
         {/* Desktop Actions */}
         <div className="hidden md:flex gap-3 items-center">
           <LanguageSwitcher />
+
+          {/* Login / Logout */}
+          {isAuthenticated ? (
+            <button
+              onClick={() => logout()}
+              className="px-4 py-2 bg-transparent border border-white rounded-lg text-white hover:bg-white/10 transition"
+              title={t("Navbar.Logout") || "Logout"}
+            >
+              {t("Navbar.Logout") || "Logout"}
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="px-4 py-2 bg-white text-[#006F3C] font-semibold rounded-lg hover:opacity-95 transition"
+              title={t("Navbar.Login") || "Login"}
+            >
+              {t("Navbar.Login") || "Login"}
+            </Link>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -155,6 +175,32 @@ const Navbar: React.FC = () => {
                 </svg>
                 {t("Navbar.Articles")}
               </Link>
+            </li>
+
+            {/* Login / Logout - Mobile */}
+            <li>
+              {isAuthenticated ? (
+                <button
+                  onClick={() => {
+                    logout();
+                    setMenuOpen(false);
+                  }}
+                  className="w-full text-left px-4 py-2 bg-transparent border border-white/10 rounded-lg hover:bg-white/5 transition"
+                >
+                  {t("Navbar.Logout") || "Logout"}
+                </button>
+              ) : (
+                <Link
+                  to="/login"
+                  className="flex items-center justify-center gap-2 text-base sm:text-lg hover:text-[#FFC107] transition px-4 py-2"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                  {t("Navbar.Login") || "Login"}
+                </Link>
+              )}
             </li>
 
             <li className="pt-3">

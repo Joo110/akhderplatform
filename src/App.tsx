@@ -12,9 +12,11 @@ import Contact from "./Pages/Contact";
 import Articles from "./MyComponents/Articles";
 import AddArticle from "./MyComponents/AddArticle";
 import ArticleDetails from "./MyComponents/ArticleDetails";
+import Login from "./MyComponents/Login";
 
 import "./i18n";
 import "react-toastify/dist/ReactToastify.css";
+import { AuthProvider } from "./context/AuthProvider"; // تأكد من المسار
 
 const App = () => {
   const { i18n } = useTranslation();
@@ -26,25 +28,28 @@ const App = () => {
   }, [i18n.language]);
 
   return (
-    <Router>
-      <ToastContainer position="top-center" />
+    <AuthProvider>
+      <Router>
+        <ToastContainer position="top-center" />
 
-      <Routes>
-        {/* Layout عام مع Navbar/Footer */}
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="service/:id" element={<ServiceDetails />} />
-          <Route path="Founder" element={<Founders />} />
-          <Route path="/about" element={<About />} />
-<Route path="/contact" element={<Contact />} />
-        </Route>
+        <Routes>
+          {/* Layout عام مع Navbar/Footer */}
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="service/:id" element={<ServiceDetails />} />
+            <Route path="Founder" element={<Founders />} />
+            <Route path="login" element={<Login />} />
+            <Route path="about" element={<About />} />
+            <Route path="contact" element={<Contact />} />
+          </Route>
 
-        {/* Pages بدون Navbar/Footer */}
-        <Route path="articles" element={<Articles />} />
-        <Route path="articles/add/Awadeen" element={<AddArticle />} />
-        <Route path="articles/:id" element={<ArticleDetails />} />
-      </Routes>
-    </Router>
+          {/* Pages بدون Navbar/Footer */}
+          <Route path="articles" element={<Articles />} />
+          <Route path="articles/add" element={<AddArticle />} />
+          <Route path="articles/:id" element={<ArticleDetails />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 };
 

@@ -6,10 +6,9 @@ import { useArticles } from "../hooks/useArticles";
 import type { Article } from "../types/article";
 import { useAuthContext } from "../context/AuthProvider";
 
-const API_BASE = "https://localhost:7114"; // URL الـ API
+const API_BASE = "https://localhost:7114";
 
 
-// مسار صورة بدل الاحتياط (ضع placeholder في public/images/placeholder.png)
 const FALLBACK_SRC = `${window.location.origin}/images/placeholder.png`;
 
 const Articles: React.FC = () => {
@@ -34,12 +33,9 @@ const Articles: React.FC = () => {
     }
   };
 
-  // helper لبناء URL كامل من pictureUrl اللي ال API بيرجعه
   const getFullImageUrl = (url?: string | null) => {
     if (!url) return "";
-    // لو URL كامل بالفعل (http:// أو https:// أو //) رجعه كما هو
     if (/^(https?:)?\/\//i.test(url)) return url;
-    // خلاف ذلك، أزل أي شرطة بداية وألصقها بعد الـ base
     return `${API_BASE}/${url.replace(/^\/+/, "")}`;
   };
 
@@ -76,7 +72,6 @@ const Articles: React.FC = () => {
             </span>
           </div>
 
-          {/* Add New Button - يظهر فقط لو المستخدم مسجّل دخول */}
           {isAuthenticated && (
             <Link
               to="/articles/add"
@@ -99,7 +94,6 @@ const Articles: React.FC = () => {
               </svg>
               <p className="text-gray-500 text-base sm:text-lg font-medium mb-4">{t("Articles.NoArticles")}</p>
 
-              {/* Add First - يظهر فقط لو مستخدم مسجّل دخول */}
               {isAuthenticated ? (
                 <Link
                   to="/articles/add"

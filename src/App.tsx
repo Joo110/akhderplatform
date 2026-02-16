@@ -13,6 +13,9 @@ import Articles from "./MyComponents/Articles";
 import AddArticle from "./MyComponents/AddArticle";
 import ArticleDetails from "./MyComponents/ArticleDetails";
 import Login from "./MyComponents/Login";
+import ProjectItems from "./MyComponents/ProjectItems";
+import Projectitemdetails from "./MyComponents/Projectitemdetails";
+import AddProjectItem from "./MyComponents/AddProjectItem";
 
 import "./i18n";
 import "react-toastify/dist/ReactToastify.css";
@@ -26,7 +29,6 @@ const App = () => {
     document.documentElement.dir = i18n.language === "ar" ? "rtl" : "ltr";
     console.log("Current Language:", i18n.language);
   }, [i18n.language]);
-
   return (
     <AuthProvider>
       <Router>
@@ -42,6 +44,9 @@ const App = () => {
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
           </Route>
+          <Route path="/products" element={<ProjectItems />} />
+          <Route path="/Projectitemdetails/:id" element={<Projectitemdetails />} />
+          <Route path="/AddProjectItem" element={<AddProjectItem />} />
 
           {/* Pages بدون Navbar/Footer */}
           <Route path="articles" element={<Articles />} />

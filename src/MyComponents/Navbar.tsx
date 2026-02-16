@@ -87,6 +87,19 @@ const Navbar: React.FC = () => {
             </Link>
           </li>
 
+          {/* Products Link - Desktop */}
+          <li>
+            <Link
+              to="/products"
+              className="text-lg lg:text-xl hover:text-[#FFC107] relative
+             after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[2px]
+             after:bg-[#FFC107] after:transition-all after:duration-500
+             hover:after:w-full"
+            >
+              {t("Navbar.Products")}
+            </Link>
+          </li>
+
           {/* Articles Link - Desktop */}
           <li>
             <Link
@@ -160,6 +173,20 @@ const Navbar: React.FC = () => {
                 onClick={() => setMenuOpen(false)}
               >
                 {t("Navbar.Who_We_are")}
+              </Link>
+            </li>
+
+            {/* Products Link - Mobile */}
+            <li>
+              <Link
+                to="/products"
+                className="text-base sm:text-lg hover:text-[#FFC107] transition flex items-center justify-center gap-2"
+                onClick={() => setMenuOpen(false)}
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 16V8a2 2 0 00-1-1.732l-7-4.041a2 2 0 00-2 0l-7 4.041A2 2 0 003 8v8a2 2 0 001 1.732l7 4.041a2 2 0 002 0l7-4.041A2 2 0 0021 16z" />
+                </svg>
+                {t("Navbar.Products")}
               </Link>
             </li>
 
